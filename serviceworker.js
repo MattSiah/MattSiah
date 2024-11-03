@@ -1,11 +1,10 @@
 const CACHE_NAME = 'voedsel-app-v1';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  'https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css',
-  'https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js',
-  'https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js'
+  '/MattSiah/',
+  '/MattSiah/index.html',
+  '/MattSiah/manifest.json',
+  '/MattSiah/app.js',
+  '/MattSiah/service-worker.js'
 ];
 
 self.addEventListener('install', event => {
