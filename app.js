@@ -8,6 +8,9 @@ const FoodIntroductionSearch = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedAge, setSelectedAge] = useState(36);
 
+
+  const root = document.getElementById('root');
+ReactDOM.render(<FoodIntroductionSearch />, root);
   // Uitgebreide database met alle voedsel uit het document
   const foodDatabase = {
     // Dranken
