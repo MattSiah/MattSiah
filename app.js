@@ -1,17 +1,9 @@
-import React, { useState, useMemo } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Search } from 'lucide-react';
-
+// app.js
 const FoodIntroductionSearch = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedAge, setSelectedAge] = useState(36);
+  const [searchTerm, setSearchTerm] = React.useState('');
+  const [selectedAge, setSelectedAge] = React.useState(36);
 
-
-  const root = document.getElementById('root');
-ReactDOM.render(<FoodIntroductionSearch />, root);
-  // Uitgebreide database met alle voedsel uit het document
+  // Volledige database met alle voedsel
   const foodDatabase = {
     // Dranken
     'moedermelk aan de borst': 0,
@@ -131,12 +123,12 @@ ReactDOM.render(<FoodIntroductionSearch />, root);
     'zacht smakende kruiden': 12
   };
 
-  const filteredResults = useMemo(() => {
+  const filteredResults = React.useMemo(() => {
     const searchTermLower = searchTerm.toLowerCase();
     const results = [];
     
     for (const [food, months] of Object.entries(foodDatabase)) {
-      if (months <= selectedAge && food.includes(searchTermLower)) {
+      if (months <= selectedAge && food.toLowerCase().includes(searchTermLower)) {
         results.push({ food, months });
       }
     }
@@ -154,15 +146,16 @@ ReactDOM.render(<FoodIntroductionSearch />, root);
   };
 
   return (
-    <Card className="w-full max-w-2xl">
-      <CardHeader>
-        <CardTitle>Voedselintroductie Zoektool</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <div className="space-y-2">
-          <Label htmlFor="age">Leeftijd van het kind</Label>
+    <div className="max-w-2xl mx-auto p-4 bg-white rounded-lg shadow">
+      <div className="mb-6">
+        <h1 className="text-2xl font-bold mb-4">Voedselintroductie Zoektool</h1>
+      </div>
+      <div className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium mb-1">
+            Leeftijd van het kind
+          </label>
           <select
-            id="age"
             value={selectedAge}
             onChange={(e) => setSelectedAge(Number(e.target.value))}
             className="w-full p-2 border rounded"
@@ -181,22 +174,20 @@ ReactDOM.render(<FoodIntroductionSearch />, root);
           </select>
         </div>
         
-        <div className="space-y-2">
-          <Label htmlFor="search">Zoek voedsel</Label>
-          <div className="relative">
-            <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
-            <Input
-              id="search"
-              type="text"
-              placeholder="Bijv. appel, wortel..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-8"
-            />
-          </div>
+        <div>
+          <label className="block text-sm font-medium mb-1">
+            Zoek voedsel
+          </label>
+          <input
+            type="text"
+            placeholder="Bijv. appel, wortel..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full p-2 border rounded"
+          />
         </div>
 
-        <div className="mt-4 space-y-2">
+        <div className="mt-4">
           {searchTerm && filteredResults.length === 0 ? (
             <p className="text-gray-500">Geen resultaten gevonden</p>
           ) : (
@@ -215,9 +206,10 @@ ReactDOM.render(<FoodIntroductionSearch />, root);
             </div>
           )}
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };
 
-export default FoodIntroductionSearch;
+// Render de app
+ReactDOM.render(React.createElement(FoodIntroductionSearch), document.getElementById('root'));
