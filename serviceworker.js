@@ -1,4 +1,3 @@
-// service-worker.js
 const CACHE_NAME = 'voedsel-app-v1';
 const urlsToCache = [
   '/',
